@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        h1{
+            font-size: 25px;
+            color: blue;
+        }
+        p{
+            color: rgb(91, 122, 122);
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>EXPENSE TRACKER</h1>
+    <form action="" id="input">
+        <p>select month</p>
+        <select name="" onselect="" id="month">
+            <option value="january">january</option>
+            <option value="">february</option>
+            <option value="">march</option>
+            <option value="">april</option>
+            <option value="">may</option>
+            <option value="">june</option>
+            <option value="">july</option>
+            <option value="">aughust</option>
+            <option value="">september</option>
+            <option value="">october</option>
+            <option value="">november</option>
+            <option value="">december</option>
+        </select>
+        <br>
+        <p>select income</p>
+        <input type="number" id="income" placeholder="enter your earning"></input>
+        <br>
+        <p>select expense</p>
+        <input type="text" id="expense" placeholder="enter your expense"></input>
+        <br>
+        <button type="submit" onclick="myfunc()">submit</button>
+    </form>
+    <div style="display: flex; flex-wrap: wrap;" id="parent">
+
+    </div>
+</body>
+    <script>
+        function myfunc(){
+            let parent=document.getElementById("#Parent")
+            event.preventDefault();
+            const divfirst=document.createElement('div');
+            const heading=document.createElement('h3');
+            let temp=document.querySelector('#month')
+            let str=temp[temp.selectedIndex].text;
+            heading.innerHTML=str;
+
+            const para1=document.createElement('p');
+            para1.innerText='your monthly income is Rs'+document.querySelector('#income').value
+            const para2=document.createElement('p');
+            para2.innerText='your monthly expense is RS'+document.querySelector('#expense').value
+            const para3=document.createElement('p');
+            var saving=Number(document.querySelector('#income').value)-Number(document.querySelector('#expense').value)
+            para3.innerText='tour total saving in RS'+saving
+            divfirst.append(heading);
+            divfirst.append(para1);
+            divfirst.append(para2);
+            divfirst.append(para3);
+            document.querySelector('#parent').append(divfirst)
+        }
+    </script>
+</html>
