@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form >
+        <input type="text" placeholder="enter your name" id="name">
+        <input type="number" placeholder="enter your mobile number" id="mobile">
+        <select name="" id="select">
+            <option value="friends">friends</option>
+            <option value="family">family</option>
+            <option value="others">others</option>
+        </select>
+        <button onclick="userdata()">submit</button>
+    </form>
+</body>
+     <script>
+         var contactlist;
+         
+            if(localStorage.getItem('contactlis')===null){
+                contactlist=[];
+            }
+            else{
+                contactlist=JSON.parse(localStorage.getItem('contactlist'))
+            }
+        function userdata(){
+            event.preventDefault()
+            var userobj={
+                name:document.getElementById('name').value,
+                moblie:document.getElementById('mobile').value,
+                others:document.getElementById('select').value
+            }
+            contactlist.push(userobj)
+            localStorage.setItem('contactlist',JSON.stringify(contactlist))
+
+        }
+        
+     </script>
+</html>
