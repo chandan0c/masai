@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <th><td>name</td> <td>mobile number</td> <td>type</td> <td>favourite</td></th>
+        <tr id="tablerow"></tr>
+    </table>
+    
+</body>
+     <script>
+         var tabledata=JSON.parse(localStorage.getItem('contactlist'))
+             tabledata.array.forEach(element => {
+                var name=document.createElement('td')
+                name.innerText=element.name
+                var mobile=document.createElement('td')
+                mobile.innerText=element.mobile
+                var type=document.createElement('td')
+                type.innerText=element.others
+                var favourite=document.createElement('td')
+                type.innerText="addto favourite"
+                tr.append(name,mobile,type,favourite)
+             });
+     </script>
+</html>
