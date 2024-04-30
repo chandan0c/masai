@@ -1,0 +1,90 @@
+// Total number of orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  { $group: { _id: "$_id", total_orders: { $sum: 1 } } },
+]);
+
+// Total price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  { $group: { _id: "$_id", total_price: { $sum: "$orders.price" } } },
+]);
+
+// Average price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  { $group: { _id: "$_id", avg_price: { $avg: "$orders.price" } } },
+]);
+
+// Highest price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  { $group: { _id: "$_id", max_price: { $max: "$orders.price" } } },
+]);
+
+// Lowest price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  { $group: { _id: "$_id", min_price: { $min: "$orders.price" } } },
+]);
+
+// Total number of orders and total price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  {
+    $group: {
+      _id: "$_id",
+      total_orders: { $sum: 1 },
+      total_price: { $sum: "$orders.price" },
+    },
+  },
+]);
+
+// Total number of orders and average price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  {
+    $group: {
+      _id: "$_id",
+      total_orders: { $sum: 1 },
+      avg_price: { $avg: "$orders.price" },
+    },
+  },
+]);
+
+// Highest price and lowest price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  {
+    $group: {
+      _id: "$_id",
+      max_price: { $max: "$orders.price" },
+      min_price: { $min: "$orders.price" },
+    },
+  },
+]);
+
+// Total number of orders and highest price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  {
+    $group: {
+      _id: "$_id",
+      total_orders: { $sum: 1 },
+      max_price: { $max: "$orders.price" },
+    },
+  },
+]);
+
+// Total number of orders, total price, and average price of all orders for each customer:
+db.collection.aggregate([
+  { $unwind: "$orders" },
+  {
+    $group: {
+      _id: "$_id",
+      total_orders: { $sum: 1 },
+      total_price: { $sum: "$orders.price" },
+      avg_price: { $avg: "$orders.price" },
+    },
+  },
+]);
