@@ -1,0 +1,25 @@
+db.collection.aggregate([
+    {$sort: {pop: -1}},
+    {$group: {_id: "$state", city: {$first: "$city"}, population: {$first: "$pop"}}}
+  ])
+      2.   Find the average population per state by cities:
+  db.collection.aggregate([
+    {$group: {_id: {state: "$state", city: "$city"}, population: {$sum: "$pop"}}},
+    {$group: {_id: "$_id.state", avg_population: {$avg: "$population"}}}
+  ])
+  
+  3.  Find the lowest population city:
+  db.collection.aggregate([
+    {$sort: {pop: 1}},
+    {$group: {_id: null, city: {$first: "$city"}, population: {$first: "$pop"}}}
+  ])
+  
+  4. $project aggregation stage:
+  db.collection.aggregate([
+    {$project: {new_field: "$old_field", _id: 0}}
+  ])
+  
+  5. $count stage:
+  db.collection.aggregate([
+    {$count: "total_documents"}
+  ])
